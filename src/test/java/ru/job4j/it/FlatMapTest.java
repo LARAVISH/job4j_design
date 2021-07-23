@@ -3,6 +3,7 @@ package ru.job4j.it;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -13,7 +14,7 @@ public class FlatMapTest {
     @Test
     public void whenDiffNext() {
         Iterator<Iterator<Integer>> data = Arrays.asList(
-                Arrays.asList(1).iterator(),
+                Collections.singletonList(1).iterator(),
                 Arrays.asList(2, 3).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
@@ -24,7 +25,7 @@ public class FlatMapTest {
 
     @Test
     public void whenSeqNext() {
-        Iterator<Iterator<Integer>> data = Arrays.asList(
+        Iterator<Iterator<Integer>> data = Collections.singletonList(
                 Arrays.asList(1, 2, 3).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
@@ -35,8 +36,8 @@ public class FlatMapTest {
 
     @Test
     public void whenMultiHasNext() {
-        Iterator<Iterator<Integer>> data = Arrays.asList(
-                Arrays.asList(1).iterator()
+        Iterator<Iterator<Integer>> data = Collections.singletonList(
+                Collections.singletonList(1).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
         assertThat(flat.hasNext(), is(true));
@@ -45,8 +46,8 @@ public class FlatMapTest {
 
     @Test
     public void whenHasNextFalse() {
-        Iterator<Iterator<Integer>> data = Arrays.asList(
-                Arrays.asList(1).iterator()
+        Iterator<Iterator<Integer>> data = Collections.singletonList(
+                Collections.singletonList(1).iterator()
         ).iterator();
         FlatMap<Integer> flat = new FlatMap<>(data);
         assertThat(flat.next(), is(1));
@@ -55,8 +56,8 @@ public class FlatMapTest {
 
     @Test(expected = NoSuchElementException.class)
     public void whenEmpty() {
-        Iterator<Iterator<Object>> data = Arrays.asList(
-                Arrays.asList().iterator()
+        Iterator<Iterator<Object>> data = Collections.singletonList(
+                Collections.emptyIterator()
         ).iterator();
         FlatMap<Object> flat = new FlatMap<>(data);
         flat.next();
@@ -65,10 +66,10 @@ public class FlatMapTest {
     @Test
     public void whenSeveralEmptyAndNotEmpty() {
         Iterator<Iterator<?>> it = Arrays.asList(
-                Arrays.asList().iterator(),
-                Arrays.asList().iterator(),
-                Arrays.asList().iterator(),
-                Arrays.asList(1).iterator()
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.singletonList(1).iterator()
         ).iterator();
         FlatMap flat = new FlatMap(it);
         assertTrue(flat.hasNext());
@@ -78,12 +79,12 @@ public class FlatMapTest {
     @Test
     public void whenSeveralEmptyThenReturnFalse() {
         Iterator<Iterator<Object>> it = Arrays.asList(
-                Arrays.asList().iterator(),
-                Arrays.asList().iterator(),
-                Arrays.asList().iterator(),
-                Arrays.asList().iterator()
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator(),
+                Collections.emptyIterator()
         ).iterator();
-        FlatMap flat = new FlatMap(it);
+        FlatMap<Object> flat = new FlatMap<>(it);
         assertFalse(flat.hasNext());
     }
 }
