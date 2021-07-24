@@ -19,33 +19,33 @@ public class Generics {
         generics.printObjects(third);
         System.out.println();
 
-        generics.printBoundedWildCard(first);
+       // generics.printBoundedWildCard(first);
         generics.printBoundedWildCard(second);
         generics.printBoundedWildCard(third);
         System.out.println();
 
         generics.printLowerWildCard(first);
         generics.printLowerWildCard(second);
-        generics.printLowerWildCard(third);
+       // generics.printLowerWildCard(third);
     }
 
     public void printObjects(List<?> list) {
-        for (Iterator<?> iterator = list.iterator(); iterator.hasNext();) {
-            Object next = iterator.next();
+        for (Iterator<?> it = list.iterator(); it.hasNext();) {
+            Object next = it.next();
             System.out.println("current element " + next);
         }
     }
 
-    public void printBoundedWildCard(List<? extends Animal> predators) {
-        for (Iterator<? extends Animal> iterator = predators.iterator(); iterator.hasNext();) {
-            Animal next = iterator.next();
+    public void printBoundedWildCard(List<? extends Predator> predators) {
+        for (Iterator<? extends Predator> it = predators.iterator(); it.hasNext();) {
+            Predator next = it.next();
             System.out.println("current element " + next);
         }
     }
 
-    public void printLowerWildCard(List<? super Tiger> list) {
-        for (Iterator<? super Tiger> iterator = list.iterator(); iterator.hasNext();) {
-            Object next = iterator.next();
+    public void printLowerWildCard(List<? super Predator> list) {
+        for (Iterator<? super Predator> it = list.iterator(); it.hasNext();) {
+            Object next = it.next();
             System.out.println("current element " + next);
         }
     }
