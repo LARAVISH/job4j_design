@@ -1,7 +1,6 @@
 package ru.job4j.generics;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Generics {
@@ -30,22 +29,19 @@ public class Generics {
     }
 
     public void printObjects(List<?> list) {
-        for (Iterator<?> it = list.iterator(); it.hasNext();) {
-            Object next = it.next();
+        for (Object next : list) {
             System.out.println("current element " + next);
         }
     }
 
     public void printBoundedWildCard(List<? extends Predator> predators) {
-        for (Iterator<? extends Predator> it = predators.iterator(); it.hasNext();) {
-            Predator next = it.next();
+        for (Predator next : predators) {
             System.out.println("current element " + next);
         }
     }
 
     public void printLowerWildCard(List<? super Predator> list) {
-        for (Iterator<? super Predator> it = list.iterator(); it.hasNext();) {
-            Object next = it.next();
+        for (Object next : list) {
             System.out.println("current element " + next);
         }
     }
