@@ -8,6 +8,9 @@ import org.junit.Test;
 import java.util.NoSuchElementException;
 
 public class MatrixItTest {
+    public MatrixItTest() {
+    }
+
     @Test
     public void when4El() {
         int[][] in = {

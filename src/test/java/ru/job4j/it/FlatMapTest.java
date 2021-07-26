@@ -11,6 +11,9 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class FlatMapTest {
+    public FlatMapTest() {
+    }
+
     @Test
     public void whenDiffNext() {
         Iterator<Iterator<Integer>> data = Arrays.asList(
@@ -61,30 +64,5 @@ public class FlatMapTest {
         ).iterator();
         FlatMap<Object> flat = new FlatMap<>(data);
         flat.next();
-    }
-
-    @Test
-    public void whenSeveralEmptyAndNotEmpty() {
-        Iterator<Iterator<?>> it = Arrays.asList(
-                Collections.emptyIterator(),
-                Collections.emptyIterator(),
-                Collections.emptyIterator(),
-                Collections.singletonList(1).iterator()
-        ).iterator();
-        FlatMap flat = new FlatMap(it);
-        assertTrue(flat.hasNext());
-        assertThat(1, is(flat.next()));
-    }
-
-    @Test
-    public void whenSeveralEmptyThenReturnFalse() {
-        Iterator<Iterator<Object>> it = Arrays.asList(
-                Collections.emptyIterator(),
-                Collections.emptyIterator(),
-                Collections.emptyIterator(),
-                Collections.emptyIterator()
-        ).iterator();
-        FlatMap<Object> flat = new FlatMap<>(it);
-        assertFalse(flat.hasNext());
     }
 }
