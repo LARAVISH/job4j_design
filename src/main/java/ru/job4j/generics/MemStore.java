@@ -4,55 +4,68 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/** the class - universal holder
+ * @author Lara Vish
+ */
 
 
 public class MemStore<T extends Base> implements Store<T> {
 
     private final Map<String, T> mem = new HashMap<>();
 
+    /**
+     * the method adds not null element
+     *
+     * @param model - value
+     */
     @Override
     public void add(T model) {
-        if (model != null) {
-            mem.put(model.getId(), model);
-        }
+        mem.putIfAbsent(model.getId(), model);
     }
 
+    /**
+     * the method replaces element at the position of the key
+     *
+     * @param id    key
+     * @param model value
+     * @return res true or false
+     */
     @Override
     public boolean replace(String id, T model) {
-        boolean res = false;
-        T t = findBy(id);
-        for (String s : mem.keySet()) {
-            if (t.getId().equals(id)) {
-                mem.replace(s, model);
-                res = true;
-                break;
-            }
+        if (!mem.containsKey(id)) {
+            return false;
         }
-
-        return res;
+        mem.replace(id, model);
+        return true;
     }
 
+    /**
+     * the method deletes element
+     *
+     * @param id - key
+     * @return res true or false
+     */
     @Override
     public boolean delete(String id) {
-        boolean res = false;
-        T t = findBy(id);
-        if (t.getId().equals(id)) {
-            mem.remove(t.getId());
-            res = true;
+        if (!mem.containsKey(id)) {
+            return false;
         }
-        return res;
+        mem.remove(id);
+        return true;
     }
 
+    /**
+     * the method searches for.. by number id
+     *
+     * @param id key
+     * @return type T
+     */
     @Override
     public T findBy(String id) {
-        T base = null;
-        for (T t : mem.values()) {
-            if (t.getId().equals(id)) {
-                base = t;
-                break;
-            }
+        if (!mem.containsKey(id)) {
+            return null;
         }
-        return base;
+        return mem.get(id);
     }
 
     @Override

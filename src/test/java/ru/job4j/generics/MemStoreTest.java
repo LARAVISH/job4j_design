@@ -19,7 +19,7 @@ public class MemStoreTest {
         assertThat(roleStore.findBy("45").getId(), is("45"));
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void testReplace() {
         User user1 = new User("1");
         User user2 = new User("2");
