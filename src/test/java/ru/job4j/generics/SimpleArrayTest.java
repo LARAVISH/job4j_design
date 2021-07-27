@@ -21,7 +21,7 @@ public class SimpleArrayTest {
     public void getElement() {
         SimpleArray<Integer> simpleArray = new SimpleArray<>(2);
         simpleArray.add(1);
-        assertThat(simpleArray.get(0),is(1));
+        assertThat(simpleArray.get(0), is(1));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class SimpleArrayTest {
         SimpleArray<String> strings = new SimpleArray<>(5);
         strings.add("hello");
         strings.add("world");
-        strings.setIndex(0,"friend");
+        strings.setIndex(0, "friend");
         assertThat(strings.get(0), is("friend"));
     }
 
@@ -59,7 +59,6 @@ public class SimpleArrayTest {
         numbers.add(4);
         numbers.add(5);
         numbers.remove(2);
-        assertNull(numbers.get(4));
         assertThat(numbers.get(2), is(4));
     }
 
