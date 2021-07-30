@@ -54,4 +54,16 @@ public class SimpleArrayListTest {
         array.add("second");
         it.next();
     }
+    @Test
+    public void whenAdd2ElementThenGet4El() {
+        SimpleArrayList<String> array = new SimpleArrayList<>(2);
+        array.add("1");
+        array.add("2");
+        array.add("3");
+        array.add("4");
+        String rsl = array.get(2);
+        String rsl2 = array.get(3);
+        assertThat(rsl, is("3"));
+        assertThat(rsl2, is("4"));
+    }
 }

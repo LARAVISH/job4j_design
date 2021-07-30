@@ -6,9 +6,13 @@ public class SimpleArrayList<T> implements Iterable<T> {
     private Object[] elementData;
     int modCount;
     int size = 0;
+   private int capacity;
 
     public SimpleArrayList() {
         this.elementData = new Object[0];
+    }
+    public SimpleArrayList(int capacity) {
+        this.elementData = new Object[capacity];
     }
 
     public T get(int index) {
