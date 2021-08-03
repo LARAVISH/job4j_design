@@ -27,22 +27,23 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        Node<E> tmp = head;
         Objects.checkIndex(index, size);
-        return tmp.getItem();
+        Node<E> tmp = head;
+        for (int i = 0; i <= index; i++) {
+            tmp = tmp.getNext();
+        }
+        return tmp.getValue();
     }
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
-
-             int point;
-             int exModCount;
-            private Node<E> item;
+        return new Iterator<>() {
+            int exModCount;
+            private Node<E> item = head;
 
             @Override
             public boolean hasNext() {
-                return point < size;
+                return item != null;
             }
 
             @Override
@@ -53,32 +54,31 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (exModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return (E) new Node<>(item.getItem());
+                E el = item.getValue();
+                item = item.getNext();
+                return el;
             }
         };
     }
 
     private static class Node<E> {
-
-
-        public void setNext(Node<E> next) {
-            this.next = next;
-        }
-
-        public E getItem() {
-            return item;
-        }
+        private final E value;
+        private Node<E> next;
 
         public Node<E> getNext() {
             return next;
         }
 
-        private final E item;
-        private Node<E> next;
-
         private Node(E item) {
-            this.item = item;
+            this.value = item;
+        }
 
+        public E getValue() {
+            return value;
+        }
+
+        public void setNext(Node<E> next) {
+            this.next = next;
         }
     }
 }
