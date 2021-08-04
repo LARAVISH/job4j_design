@@ -29,7 +29,7 @@ public class SimpleLinkedList<E> implements List<E> {
     public E get(int index) {
         Objects.checkIndex(index, size);
         Node<E> tmp = head;
-        for (int i = 0; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             tmp = tmp.getNext();
         }
         return tmp.getValue();
