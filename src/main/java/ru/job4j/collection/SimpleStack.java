@@ -12,7 +12,7 @@ public class SimpleStack<T> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return linked.deleteLast();
+        return linked.deleteFirst();
     }
 
     public void push(T value) {
