@@ -1,5 +1,6 @@
 package ru.job4j.iterator;
 
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -49,5 +50,11 @@ public class ListUtilsTest {
         List<Integer> list2 = new ArrayList<>(List.of(1));
         ListUtils.removeAll(list1,list2);
         assertThat(Arrays.asList(2,3), is(list1));
+    }
+    @Test
+    public void whenAddAfterLast() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2));
+        ListUtils.addAfter(input, 2, 3);
+        assertThat(Arrays.asList(0, 1, 2, 3), Is.is(input));
     }
 }
