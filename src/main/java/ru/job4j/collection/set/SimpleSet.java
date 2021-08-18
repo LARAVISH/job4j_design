@@ -3,12 +3,13 @@ package ru.job4j.collection.set;
 import ru.job4j.collection.SimpleArrayList;
 
 
+
 import java.util.Iterator;
 import java.util.Objects;
 
 public class SimpleSet<T> implements Set<T> {
 
-    SimpleArray<T> set = new SimpleArray<>();
+   SimpleArrayList<T> set = new SimpleArrayList<>();
 
 
     @Override
