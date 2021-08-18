@@ -35,6 +35,7 @@ public class SimpleLinkedList<E> implements List<E> {
         return tmp.getValue();
     }
 
+
     @Override
     public Iterator<E> iterator() {
         return new Iterator<>() {
