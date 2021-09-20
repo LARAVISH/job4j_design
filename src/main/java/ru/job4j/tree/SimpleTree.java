@@ -12,13 +12,12 @@ public class SimpleTree<E> implements Tree<E> {
         this.root = new Node<>(root);
     }
 
-
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
         Node<E> current = new Node<>(child);
         Node<E> node;
-        List<Node<E>> list = new LinkedList();
+        List<Node<E>> list = new LinkedList<>();
         list.add(root);
         while (!list.isEmpty()) {
             node = list.remove(0);
