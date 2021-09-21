@@ -2,27 +2,29 @@ package ru.job4j.collection.set;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
 
 public class SimpleSetTest {
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = NoSuchElementException.class)
     public void whenAddNotNull() {
         Set<Integer> set = new SimpleSet<>();
-        assertTrue(set.add(1));
-        assertTrue(set.contains(1));
-        assertFalse(set.add(1));
+        set.add(1);
+        set.contains(1);
+        set.add(1);
+        set.iterator().next();
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = NoSuchElementException.class)
     public void whenAddNull() {
         Set<Integer> set = new SimpleSet<>();
-        assertTrue(set.add(null));
-        assertTrue(set.contains(null));
-        assertFalse(set.add(null));
+        set.add(null);
+        set.contains(null);
+        set.add(null);
+        set.iterator().next();
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = NoSuchElementException.class)
     public void whenEmpty() {
         Set<Integer> set = new SimpleSet<>();
         set.iterator().next();

@@ -2,10 +2,8 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
-import java.util.NoSuchElementException;
-
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class SimpleStackTest {
 

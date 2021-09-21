@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 public class SimpleArrayListTest {
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void whenAddThenGet() {
         SimpleArrayList<String> array = new SimpleArrayList<>();
         array.add("first");
@@ -19,7 +19,7 @@ public class SimpleArrayListTest {
         assertThat(rsl, is("first"));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = NoSuchElementException.class)
     public void whenAddThenIt() {
         SimpleArrayList<String> array = new SimpleArrayList<>();
         array.add("first");
@@ -46,7 +46,7 @@ public class SimpleArrayListTest {
         array.iterator().next();
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = NoSuchElementException.class)
     public void whenCorruptedIt() {
         SimpleArrayList<String> array = new SimpleArrayList<>();
         array.add("first");
@@ -54,7 +54,7 @@ public class SimpleArrayListTest {
         array.add("second");
         it.next();
     }
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void whenAdd2ElementThenGet4El() {
         SimpleArrayList<String> array = new SimpleArrayList<>(2);
         array.add("1");
