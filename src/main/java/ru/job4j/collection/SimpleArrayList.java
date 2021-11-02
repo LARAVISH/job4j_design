@@ -1,18 +1,21 @@
 package ru.job4j.collection;
 
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleArrayList<T> implements Iterable<T> {
-    private Object[] elementData;
+    private T[] elementData;
     int modCount;
     int size = 0;
-   private int capacity;
 
     public SimpleArrayList() {
-        this.elementData = new Object[0];
+        this.elementData = (T[]) new Object[0];
     }
+
     public SimpleArrayList(int capacity) {
-        this.elementData = new Object[capacity];
+        this.elementData = (T[]) new Object[capacity];
     }
 
     public T get(int index) {
@@ -21,12 +24,11 @@ public class SimpleArrayList<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        if (size >= elementData.length) {
-            elementData = Arrays.copyOf(elementData, elementData.length * 2);
-        }
-        modCount++;
-        elementData[size++] = model;
 
+        T[] tmp = (T[]) elementData;
+        elementData = (T[]) new Object[tmp.length + 1];
+        System.arraycopy(tmp, 0, elementData, 0, tmp.length);
+        elementData[elementData.length - 1] = model;
     }
 
     @Override
