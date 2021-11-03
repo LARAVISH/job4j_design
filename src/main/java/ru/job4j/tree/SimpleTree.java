@@ -14,23 +14,18 @@ public class SimpleTree<E> implements Tree<E> {
 
     @Override
     public boolean add(E parent, E child) {
-        Optional<Node<E>> node = findBy(parent);
-        if (!node.isPresent() || findBy(child).isPresent()) {
-            return false;
-        }
-        node.get().add(new Node<>(child));
-        return true;
+        boolean res = !findBy(child).isPresent();
+        findBy(parent).ifPresent(eNode -> eNode.children.add(new Node<>(child)));
+        return res;
     }
 
     @Override
     public Optional<Node<E>> findBy(E value) {
-
         return findByPredicate(el -> el.value.equals(value));
     }
 
     @Override
     public boolean isBinary() {
-
         return !(findByPredicate(el -> el.children.size() > 2)).isPresent();
     }
 
