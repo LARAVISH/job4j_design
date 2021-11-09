@@ -17,15 +17,11 @@ public class Generics {
         generics.printObjects(second);
         generics.printObjects(third);
         System.out.println();
-
-       // generics.printBoundedWildCard(first);
         generics.printBoundedWildCard(second);
         generics.printBoundedWildCard(third);
         System.out.println();
-
         generics.printLowerWildCard(first);
         generics.printLowerWildCard(second);
-       // generics.printLowerWildCard(third);
     }
 
     public void printObjects(List<?> list) {
